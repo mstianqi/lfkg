@@ -70,7 +70,7 @@ if "account" not in st.session_state:
 if "current_session" not in st.session_state:
     st.session_state.current_session = generate_session()
 
-client = OpenAI(api_key="sk-c59d31af44064a7590938503d5e04eda", base_url="https://api.deepseek.com")
+client = OpenAI(api_key="123", base_url="https://api.deepseek.com")
 # 显示当前会话的历史消息
 for message in st.session_state.messages:
     st.chat_message(message["role"]).write(message["content"])
