@@ -19,10 +19,10 @@ st.subheader("二级标题")
 
 st.write("文字测试1")
 st.write("文字测试2")
+st.logo("resources/五角星.jpeg")
 st.image("resources/incomplete.jpg")
 st.audio("resources/dongfengpo.mp3")
 st.video("resources/夜的钢琴曲五.mp4")
-st.logo("resources/五角星.jpeg")
 
 # 表格
 student_data = {
