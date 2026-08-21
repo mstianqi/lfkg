@@ -11,7 +11,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# 生成新的会话
+# 生成新的会话。会话的名字就是当前时间
 def generate_session():
     return datetime.now().strftime("%Y-%m-%d %H-%M-%S")
 
@@ -25,7 +25,7 @@ def save_session():
     with open(f"3.6 sessions/{st.session_state.current_session}.json", "w", encoding="utf-8") as f:
         json.dump(session_data, f, ensure_ascii=False, indent=4)
 
-# 加载所有会话列表
+# 加载所有会话列表。每个会话的名字是创建的时间
 def load_sessions():
     session_list = []
     if os.path.exists(f"3.6 sessions"):
@@ -42,8 +42,8 @@ def load_session(session):
         if os.path.exists(f"3.6 sessions/{session}.json"):
             with open(f"3.6 sessions/{session}.json", "r", encoding="utf-8") as f:
                 session_data = json.load(f)
-                st.session_state.messages = session_data["messages"]
                 st.session_state.current_session = session_data["current_session"]
+                st.session_state.messages = session_data["messages"]
     except Exception as e:
         st.error(e)
 
@@ -54,7 +54,7 @@ def delete_session(session):
             os.remove(f"3.6 sessions/{session}.json")
             if session == st.session_state.current_session:
                 st.session_state.messages = []
-                st.session_state.current_session = generate_session()
+                st.session_state.current_session = generate_session()  # 创建新的空会话，但不保存文件
     except Exception as e:
         st.error(e)
 
@@ -62,7 +62,7 @@ def delete_session(session):
 st.title("AI聊天")
 system_prompt = "You are a helpful assistant."
 
-# messages用来创建列表，保存历史消息，历史消息是字典类型。
+# messages是session_state的自定义属性，创建为列表，用来保存历史消息，历史消息是字典类型
 if "messages" not in st.session_state:
     st.session_state.messages = []
 if "account" not in st.session_state:
@@ -77,6 +77,9 @@ for message in st.session_state.messages:
 
 prompt = st.chat_input("请输入问题")
 if prompt:
+    if not st.session_state.messages:
+        st.session_state.current_session = generate_session()
+
     st.chat_message("user").write(prompt)  # 显示本次发送的消息
     st.session_state.messages.append({"role": "user", "content": prompt})
     stream = client.responses.create(
@@ -86,7 +89,7 @@ if prompt:
         stream=True
     )
     full_response = ""
-    # 创建接收聊天框，placeholder表示占位符，用来更新内容
+    # 创建接收容器assistant_box，placeholder表示占位符，用来更新内容
     assistant_box = st.chat_message("assistant")
     placeholder = assistant_box.empty()
 
@@ -102,6 +105,7 @@ if prompt:
 # 设置侧边栏
 with st.sidebar:
     st.subheader("历史记录")
+    # 点击“新建会话”按钮后的交互逻辑
     if st.button("新建会话", width="stretch"):
         # 保存旧会话
         if st.session_state.messages:

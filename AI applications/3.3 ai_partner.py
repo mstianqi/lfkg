@@ -6,16 +6,16 @@ from openai import OpenAI
 #     page_title="AI聊天测试页面",
 #     page_icon="🧊",
 #     layout="centered",
-#     initial_sidebar_state="expanded",
+#     initial_sidebar_state="expanded",  # 侧边栏默认展开
 # )
 #
 # st.title("AI聊天")
 # system_prompt = "You are a helpful assistant."
-# # 创建列表，保存历史消息。历史消息是字典类型
+# # messages是session_state的自定义属性，创建为列表，用来保存历史消息，历史消息是字典类型
 # if "messages" not in st.session_state:
 #     st.session_state.messages = []
 # client = OpenAI(api_key="123", base_url="https://api.deepseek.com")
-# # 显示当前会话的历史消息
+# # 显示当前会话的历史消息。st.chat_message()创建消息容器（对话气泡） .write()在容器中写内容
 # for message in st.session_state.messages:
 #     st.chat_message(message["role"]).write(message["content"])
 #
@@ -37,16 +37,16 @@ st.set_page_config(
     page_title="AI聊天测试页面",
     page_icon="🧊",
     layout="centered",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="expanded",  # 侧边栏默认展开
 )
 
 st.title("AI聊天")
 system_prompt = "You are a helpful assistant."
-# 创建列表，保存历史消息。历史消息是字典类型
+# messages是session_state的自定义属性，创建为列表，用来保存历史消息，历史消息是字典类型
 if "messages" not in st.session_state:
     st.session_state.messages = []
 client = OpenAI(api_key="123", base_url="https://api.deepseek.com")
-# 显示当前会话的历史消息
+# 显示当前会话的历史消息。st.chat_message()创建消息容器（对话气泡） .write()在容器中写内容
 for message in st.session_state.messages:
     st.chat_message(message["role"]).write(message["content"])
 
@@ -61,7 +61,7 @@ if prompt:
         stream=True
     )
     full_response = ""
-    # 创建接收聊天框，placeholder表示占位符，用来更新内容
+    # 创建接收容器assistant_box，placeholder表示占位符，用来更新内容
     assistant_box = st.chat_message("assistant")
     placeholder = assistant_box.empty()
 

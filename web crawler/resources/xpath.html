@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page="xpath-learning">
+<head>
+    <meta charset="UTF-8">
+    <title>XPath 基础语法练习</title>
+</head>
+<body id="xpath-page">
+    <header class="site-header" data-role="banner">
+        <h1>XPath 学习书店</h1>
+        <p id="welcome">欢迎学习 <strong>XPath</strong> 基础语法。</p>
+    </header>
+
+    <main id="content">
+        <section id="books" class="card" data-category="reading">
+            <h2>推荐图书</h2>
+            <ul class="book-list">
+                <li class="book featured" data-id="b001" data-level="basic">
+                    <a href="/books/python" title="查看 Python 入门">Python 入门</a>
+                    <span class="price" currency="CNY">59</span>
+                </li>
+                <li class="book" data-id="b002" data-level="basic">
+                    <a href="/books/html" title="查看 HTML 基础">HTML 基础</a>
+                    <span class="price" currency="CNY">39</span>
+                </li>
+                <li class="book" data-id="b003" data-level="advanced">
+                    <a href="/books/crawler" title="查看 Python 爬虫实战">Python 爬虫实战</a>
+                    <span class="price" currency="CNY">79</span>
+                </li>
+            </ul>
+        </section>
+
+        <section id="courses" class="card" data-category="course">
+            <h2>学习课程</h2>
+            <article class="course" data-id="c001" status="open">
+                <h3>XPath 基础课</h3>
+                <p class="teacher">讲师：小林</p>
+            </article>
+            <article class="course" data-id="c002" status="closed">
+                <h3>网页解析进阶课</h3>
+                <p class="teacher">讲师：小王</p>
+            </article>
+            <article class="course" data-id="c003" status="open">
+                <h3>爬虫项目实战课</h3>
+                <p class="teacher">讲师：小张</p>
+            </article>
+        </section>
+
+        <section id="progress" class="card" data-category="practice">
+            <h2>学习进度</h2>
+            <table id="progress-table" class="progress-table" border="1">
+                <thead>
+                    <tr>
+                        <th scope="col">姓名</th>
+                        <th scope="col">已学章节</th>
+                        <th scope="col">完成度</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-student-id="s001">
+                        <td class="name">小明</td>
+                        <td class="chapter">XPath 节点选择</td>
+                        <td class="percent" data-value="80">80%</td>
+                    </tr>
+                    <tr data-student-id="s002">
+                        <td class="name">小红</td>
+                        <td class="chapter">属性与谓词</td>
+                        <td class="percent" data-value="60">60%</td>
+                    </tr>
+                    <tr data-student-id="s003">
+                        <td class="name">小刚</td>
+                        <td class="chapter">文本提取</td>
+                        <td class="percent" data-value="100">100%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer class="site-footer" data-role="footer">
+        <p>每天练习一点 XPath。</p>
+    </footer>
+</body>
+</html>
