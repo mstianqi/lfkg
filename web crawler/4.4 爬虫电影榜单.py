@@ -29,7 +29,7 @@ def save_all_movies(all_movies):
 # 获取单部电影详情
 def get_movie_info(movie_info_url):
     # 限制获取数据的频率
-    time.sleep(random.uniform(1, 3))
+    time.sleep(random.uniform(1, 4))
 
     movie_response = requests.get(movie_info_url, timeout=60)
     movie_doc = html.fromstring(movie_response.text)

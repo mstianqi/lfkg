@@ -4,8 +4,8 @@ import requests
 from datetime import timedelta
 
 bvid = "BV1sHU9BmEne"
-start_p = 120
-end_p = 136
+start_p = 142
+end_p = 158
 
 url = f"https://api.bilibili.com/x/web-interface/view?bvid={bvid}"
 
